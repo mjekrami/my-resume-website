@@ -61,12 +61,12 @@ export default function Hero() {
 
         {/* Name */}
         <motion.h1
-          className="text-6xl md:text-8xl font-light mb-6 text-white tracking-tight"
+          className="text-6xl md:text-7xl font-light mb-6 text-white tracking-tight"
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.4, duration: 0.8 }}
+          transition={{ delay: 0.8, duration: 0.8 }}
         >
-          Alex Chen
+          Mohammad Javad Ekrami
         </motion.h1>
 
         {/* Role with typing effect */}
@@ -105,7 +105,7 @@ export default function Hero() {
         >
           <Button
             variant="outline"
-            className="border-white/20 text-white hover:bg-white/5 hover:border-white/40 px-8 py-3 text-base font-light rounded-full transition-all duration-300"
+            className="border-white/20 text-white hover:bg-white/5 hover:border-white/40 px-8 py-3 text-base rounded-full transition-all duration-300"
             onClick={() => {
               document.getElementById("compute-section")?.scrollIntoView({ behavior: "smooth" })
             }}

@@ -7,46 +7,80 @@ export default function Experience() {
   const experiences = [
     {
       id: 1,
-      role: "Senior MLOps Engineer",
-      company: "TechInnovate AI",
-      location: "San Francisco, CA",
-      period: "2021 - Present",
-      teamSize: "8 people",
+      role: "Senior Data/MLOps Engineer",
+      company: "Snapp",
+      location: "Istanbul, Turkey",
+      period: "2024 - Present",
+      teamSize: "N/A",
       description:
-        "Lead the MLOps team in designing and implementing scalable ML pipelines. Reduced model deployment time from days to hours and improved model performance monitoring.",
+        "Redesigned data infrastructure with Medalion Architecture, optimized processing with Scala/Spark, and deployed scalable data warehouse and stream processing systems.",
       achievements: [
-        "Reduced deployment time by 85%",
-        "Implemented automated model monitoring",
-        "Led team of 8 engineers",
+        "Improved Spark job performance by 50% with Scala refactor",
+        "Implemented Kafka CDC with Debezium",
+        "Set up Clickhouse for high-throughput enquiry services",
       ],
     },
     {
       id: 2,
       role: "DevOps Engineer",
-      company: "CloudScale Solutions",
-      location: "Seattle, WA",
-      period: "2019 - 2021",
-      teamSize: "12 people",
+      company: "VoxSolutions",
+      location: "Bucharest (Remote)",
+      period: "2022 - 2024",
+      teamSize: "N/A",
       description:
-        "Managed Kubernetes clusters across multiple cloud providers. Implemented GitOps workflows and automated infrastructure provisioning using Terraform and Ansible.",
+        "Led cloud-native migration to Kubernetes, CI/CD with ArgoCD, infrastructure automation, and performance monitoring in a multi-cloud, multi-cluster environment.",
       achievements: [
-        "Managed 50+ Kubernetes clusters",
-        "Implemented GitOps workflows",
-        "Reduced infrastructure costs by 40%",
+        "Migrated from Docker Swarm to Kubernetes",
+        "Reduced delivery time by 5x with CI/CD pipelines",
+        "Improved MySQL query time by 10x and MongoDB analytics by 54x",
       ],
     },
     {
       id: 3,
-      role: "Cloud Infrastructure Engineer",
-      company: "DataDriven Tech",
-      location: "Austin, TX",
-      period: "2017 - 2019",
-      teamSize: "6 people",
+      role: "DevOps Engineer",
+      company: "Driverly-Insurance",
+      location: "Cardiff (Remote)",
+      period: "2022",
+      teamSize: "N/A",
       description:
-        "Designed and maintained cloud infrastructure on AWS. Implemented CI/CD pipelines using Jenkins and AWS CodePipeline for microservices architecture.",
-      achievements: ["Built CI/CD for 20+ microservices", "Achieved 99.9% uptime", "Automated deployment processes"],
+        "Implemented secure Azure integrations, simplified deployment with IaC (Bicep, ARM), and centralized logging.",
+      achievements: [
+        "Integrated Azure AD with Postgres server",
+        "Reduced deployment complexity with Bicep/ARM",
+        "Centralized logging via Azure Workspace",
+      ],
     },
-  ]
+    {
+      id: 4,
+      role: "DevOps Engineer",
+      company: "UID",
+      location: "N/A",
+      period: "2021 - 2022",
+      teamSize: "N/A",
+      description:
+        "Delivered resilient infrastructure for Java/Python applications, enhanced DB security, and transitioned to microservices architecture.",
+      achievements: [
+        "Maintained 99% uptime for core applications",
+        "Migrated monolith to microservices",
+        "Secured Oracle DB operations",
+      ],
+    },
+    {
+      id: 5,
+      role: "DevOps Engineer",
+      company: "Nordic Defender",
+      location: "Stockholm (Remote)",
+      period: "2019 - 2021",
+      teamSize: "N/A",
+      description:
+        "Implemented unified monitoring with Grafana/Cloudflare, automated infra with Ansible/Terraform, and conducted VM security hardening.",
+      achievements: [
+        "Provisioned 30+ secure VMs",
+        "Deployed unified observability with Grafana/Cloudflare",
+        "Automated Docker infrastructure for CTF with 98% uptime",
+      ],
+    },
+  ];
 
   const containerVariants = {
     hidden: { opacity: 0 },
@@ -94,11 +128,10 @@ export default function Experience() {
                 <motion.div key={exp.id} variants={itemVariants} className="relative">
                   {/* Timeline dot */}
                   <motion.div
-                    className={`absolute top-8 w-4 h-4 rounded-full bg-amber-400 border-4 border-black z-10 ${
-                      index % 2 === 0
-                        ? "left-1 md:left-1/2 md:-translate-x-1/2"
-                        : "left-1 md:left-1/2 md:-translate-x-1/2"
-                    }`}
+                    className={`absolute top-8 w-4 h-4 rounded-full bg-amber-400 border-4 border-black z-10 ${index % 2 === 0
+                      ? "left-1 md:left-1/2 md:-translate-x-1/2"
+                      : "left-1 md:left-1/2 md:-translate-x-1/2"
+                      }`}
                     whileHover={{ scale: 1.2 }}
                     initial={{ scale: 0 }}
                     whileInView={{ scale: 1 }}
@@ -108,9 +141,8 @@ export default function Experience() {
                   {/* Content card */}
                   <div className={`flex ${index % 2 === 0 ? "md:justify-start" : "md:justify-end"}`}>
                     <motion.div
-                      className={`w-full md:w-5/12 ml-12 md:ml-0 ${
-                        index % 2 === 0 ? "md:mr-auto md:pr-8" : "md:ml-auto md:pl-8"
-                      }`}
+                      className={`w-full md:w-5/12 ml-12 md:ml-0 ${index % 2 === 0 ? "md:mr-auto md:pr-8" : "md:ml-auto md:pl-8"
+                        }`}
                       whileHover={{
                         scale: 1.02,
                         boxShadow: "0 20px 40px rgba(255, 255, 255, 0.1)",
