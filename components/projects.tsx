@@ -2,7 +2,7 @@
 
 import { useState } from "react"
 import { motion } from "framer-motion"
-import { ExternalLink, Github } from "lucide-react"
+import { ExternalLink, Github, Zap, Grid3X3 } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card"
 
@@ -12,47 +12,51 @@ export default function Projects() {
   const projects = [
     {
       id: 1,
-      title: "ML Pipeline Automation",
+      title: "GPU-Accelerated ML Pipeline",
       description:
-        "Built an end-to-end ML pipeline using Kubeflow on GCP, automating the training, validation, and deployment of recommendation models.",
+        "Built an end-to-end ML pipeline using Kubeflow on GCP with NVIDIA GPU clusters, automating the training, validation, and deployment of recommendation models with 10x performance improvement.",
       image: "/placeholder.svg?height=400&width=600",
       category: "mlops",
-      tags: ["Kubeflow", "TensorFlow", "GCP", "Docker"],
+      tags: ["Kubeflow", "CUDA", "GCP", "GPU Clusters"],
       github: "#",
       demo: "#",
+      isGpuProject: true,
     },
     {
       id: 2,
-      title: "Kubernetes Cluster Optimization",
+      title: "Parallel Kubernetes Optimization",
       description:
-        "Designed and implemented a cost-effective Kubernetes cluster for a fintech company, reducing cloud costs by 40% while improving performance.",
+        "Designed and implemented a cost-effective Kubernetes cluster with parallel processing capabilities for a fintech company, reducing cloud costs by 40% while improving performance through distributed computing.",
       image: "/placeholder.svg?height=400&width=600",
       category: "devops",
-      tags: ["Kubernetes", "Terraform", "AWS", "Prometheus"],
+      tags: ["Kubernetes", "Terraform", "AWS", "Parallel Processing"],
       github: "#",
       demo: "#",
+      isGpuProject: true,
     },
     {
       id: 3,
-      title: "Real-time ML Model Serving",
+      title: "Real-time GPU Model Serving",
       description:
-        "Created a scalable real-time ML model serving platform using KServe and Redis, handling 10k+ requests per second with low latency.",
+        "Created a scalable real-time ML model serving platform using NVIDIA Triton and Redis, handling 10k+ requests per second with GPU acceleration and low latency parallel inference.",
       image: "/placeholder.svg?height=400&width=600",
       category: "mlops",
-      tags: ["KServe", "Redis", "Python", "Kubernetes"],
+      tags: ["Triton", "GPU", "Redis", "Parallel Inference"],
       github: "#",
       demo: "#",
+      isGpuProject: true,
     },
     {
       id: 4,
-      title: "GitOps CI/CD Pipeline",
+      title: "Distributed GitOps Pipeline",
       description:
-        "Implemented a GitOps workflow using ArgoCD and GitHub Actions, enabling automated deployments with rollback capabilities.",
+        "Implemented a GitOps workflow using ArgoCD and GitHub Actions with parallel deployment strategies, enabling automated deployments across multiple GPU clusters with rollback capabilities.",
       image: "/placeholder.svg?height=400&width=600",
       category: "devops",
-      tags: ["ArgoCD", "GitHub Actions", "Helm", "Kubernetes"],
+      tags: ["ArgoCD", "GitHub Actions", "Helm", "Distributed Systems"],
       github: "#",
       demo: "#",
+      isGpuProject: false,
     },
   ]
 
@@ -77,83 +81,135 @@ export default function Projects() {
   }
 
   return (
-    <section id="projects" className="py-20 px-4 md:px-8 max-w-6xl mx-auto">
-      <motion.div
-        initial="hidden"
-        whileInView="visible"
-        viewport={{ once: true, amount: 0.1 }}
-        variants={containerVariants}
-      >
-        <motion.div variants={itemVariants} className="text-center mb-12">
-          <h2 className="text-3xl md:text-4xl font-bold mb-4">My Projects</h2>
-          <div className="w-20 h-1 bg-cyan-400 mx-auto mb-8"></div>
+    <section id="projects" className="py-24 px-4 bg-white">
+      <div className="max-w-6xl mx-auto">
+        <motion.div
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, amount: 0.1 }}
+          variants={containerVariants}
+        >
+          <motion.div variants={itemVariants} className="text-center mb-12">
+            <h2 className="text-4xl md:text-5xl font-light text-black mb-6">Projects</h2>
+            <div className="w-16 h-px bg-amber-400 mx-auto mb-8"></div>
 
-          <div className="flex flex-wrap justify-center gap-4 mb-12">
-            <Button
-              variant={activeTab === "all" ? "default" : "outline"}
-              onClick={() => setActiveTab("all")}
-              className={activeTab === "all" ? "bg-cyan-600 hover:bg-cyan-700" : ""}
-            >
-              All Projects
-            </Button>
-            <Button
-              variant={activeTab === "devops" ? "default" : "outline"}
-              onClick={() => setActiveTab("devops")}
-              className={activeTab === "devops" ? "bg-cyan-600 hover:bg-cyan-700" : ""}
-            >
-              DevOps
-            </Button>
-            <Button
-              variant={activeTab === "mlops" ? "default" : "outline"}
-              onClick={() => setActiveTab("mlops")}
-              className={activeTab === "mlops" ? "bg-cyan-600 hover:bg-cyan-700" : ""}
-            >
-              MLOps
-            </Button>
-          </div>
-        </motion.div>
+            <div className="flex flex-wrap justify-center gap-4 mb-12">
+              <Button
+                variant={activeTab === "all" ? "default" : "outline"}
+                onClick={() => setActiveTab("all")}
+                className={
+                  activeTab === "all"
+                    ? "bg-black hover:bg-gray-800 text-white"
+                    : "border-black/20 text-black hover:bg-black/5"
+                }
+              >
+                All Projects
+              </Button>
+              <Button
+                variant={activeTab === "devops" ? "default" : "outline"}
+                onClick={() => setActiveTab("devops")}
+                className={
+                  activeTab === "devops"
+                    ? "bg-black hover:bg-gray-800 text-white"
+                    : "border-black/20 text-black hover:bg-black/5"
+                }
+              >
+                DevOps
+              </Button>
+              <Button
+                variant={activeTab === "mlops" ? "default" : "outline"}
+                onClick={() => setActiveTab("mlops")}
+                className={
+                  activeTab === "mlops"
+                    ? "bg-black hover:bg-gray-800 text-white"
+                    : "border-black/20 text-black hover:bg-black/5"
+                }
+              >
+                MLOps
+              </Button>
+            </div>
+          </motion.div>
 
-        <motion.div variants={containerVariants} className="grid md:grid-cols-2 gap-8">
-          {filteredProjects.map((project) => (
-            <motion.div key={project.id} variants={itemVariants} whileHover={{ y: -5 }} className="overflow-hidden">
-              <Card className="bg-gray-800/50 border-gray-700 overflow-hidden h-full flex flex-col">
-                <div className="overflow-hidden">
-                  <motion.img
-                    src={project.image}
-                    alt={project.title}
-                    className="w-full h-48 object-cover"
-                    whileHover={{ scale: 1.05 }}
-                    transition={{ duration: 0.3 }}
-                  />
-                </div>
-                <CardHeader>
-                  <CardTitle className="text-xl text-cyan-400">{project.title}</CardTitle>
-                  <CardDescription className="text-gray-400">
-                    {project.tags.map((tag, i) => (
-                      <span key={i} className="inline-block bg-gray-700 text-xs px-2 py-1 rounded mr-2 mb-2">
-                        {tag}
-                      </span>
-                    ))}
-                  </CardDescription>
-                </CardHeader>
-                <CardContent className="flex-grow">
-                  <p className="text-gray-300">{project.description}</p>
-                </CardContent>
-                <CardFooter className="flex justify-between">
-                  <Button variant="outline" size="sm" className="flex items-center gap-2">
-                    <Github size={16} />
-                    Code
-                  </Button>
-                  <Button variant="outline" size="sm" className="flex items-center gap-2">
-                    <ExternalLink size={16} />
-                    Demo
-                  </Button>
-                </CardFooter>
-              </Card>
-            </motion.div>
-          ))}
+          <motion.div variants={containerVariants} className="grid md:grid-cols-2 gap-8">
+            {filteredProjects.map((project) => (
+              <motion.div key={project.id} variants={itemVariants} whileHover={{ y: -5 }} className="overflow-hidden">
+                <Card className="bg-white border-gray-200 overflow-hidden h-full flex flex-col relative hover:border-gray-300 transition-all duration-300 shadow-sm hover:shadow-md">
+                  {/* GPU Project Indicator */}
+                  {project.isGpuProject && (
+                    <div className="absolute top-4 right-4 z-10 flex items-center gap-1 bg-amber-400/20 px-2 py-1 rounded-full">
+                      <Zap className="text-amber-600" size={12} />
+                      <span className="text-amber-600 text-xs font-mono">GPU</span>
+                    </div>
+                  )}
+
+                  <div className="overflow-hidden relative">
+                    <motion.img
+                      src={project.image}
+                      alt={project.title}
+                      className="w-full h-48 object-cover"
+                      whileHover={{ scale: 1.05 }}
+                      transition={{ duration: 0.3 }}
+                    />
+                    {/* Parallel processing overlay for GPU projects */}
+                    {project.isGpuProject && (
+                      <motion.div
+                        className="absolute inset-0 bg-gradient-to-r from-transparent via-amber-400/10 to-transparent"
+                        animate={{ x: [-100, 100] }}
+                        transition={{ duration: 3, repeat: Number.POSITIVE_INFINITY, ease: "linear" }}
+                      />
+                    )}
+                  </div>
+
+                  <CardHeader>
+                    <CardTitle className="text-xl text-black flex items-center gap-2">
+                      {project.title}
+                      {project.isGpuProject && <Grid3X3 className="text-amber-600" size={16} />}
+                    </CardTitle>
+                    <CardDescription className="text-gray-600">
+                      {project.tags.map((tag, i) => (
+                        <span
+                          key={i}
+                          className={`inline-block text-xs px-2 py-1 rounded mr-2 mb-2 ${
+                            tag.includes("GPU") ||
+                            tag.includes("CUDA") ||
+                            tag.includes("Parallel") ||
+                            tag.includes("Triton")
+                              ? "bg-amber-100 text-amber-700 border border-amber-200"
+                              : "bg-gray-100 text-gray-700 border border-gray-200"
+                          }`}
+                        >
+                          {tag}
+                        </span>
+                      ))}
+                    </CardDescription>
+                  </CardHeader>
+                  <CardContent className="flex-grow">
+                    <p className="text-gray-600 font-light">{project.description}</p>
+                  </CardContent>
+                  <CardFooter className="flex justify-between">
+                    <Button
+                      variant="outline"
+                      size="sm"
+                      className="flex items-center gap-2 border-black/20 text-black hover:bg-black/5"
+                    >
+                      <Github size={16} />
+                      Code
+                    </Button>
+                    <Button
+                      variant="outline"
+                      size="sm"
+                      className="flex items-center gap-2 border-black/20 text-black hover:bg-black/5"
+                    >
+                      <ExternalLink size={16} />
+                      Demo
+                    </Button>
+                  </CardFooter>
+                </Card>
+              </motion.div>
+            ))}
+          </motion.div>
         </motion.div>
-      </motion.div>
+      </div>
     </section>
   )
 }

@@ -1,4 +1,5 @@
 import Hero from "@/components/hero"
+import ComputeVisualization from "@/components/compute-visualization"
 import About from "@/components/about"
 import Projects from "@/components/projects"
 import Experience from "@/components/experience"
@@ -7,8 +8,9 @@ import Footer from "@/components/footer"
 
 export default function Home() {
   return (
-    <main className="min-h-screen bg-gradient-to-b from-gray-900 to-black text-white">
+    <main className="min-h-screen bg-[#211f08] text-amber-50">
       <Hero />
+      <ComputeVisualization />
       <About />
       <Projects />
       <Experience />

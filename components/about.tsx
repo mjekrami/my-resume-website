@@ -5,12 +5,12 @@ import { Code, GitBranch, Database, Cloud, Cpu, LineChart } from "lucide-react"
 
 export default function About() {
   const skills = [
-    { name: "CI/CD Pipelines", icon: <GitBranch className="text-cyan-400" size={24} /> },
-    { name: "Kubernetes", icon: <Cloud className="text-cyan-400" size={24} /> },
-    { name: "Docker", icon: <Code className="text-cyan-400" size={24} /> },
-    { name: "ML Pipelines", icon: <LineChart className="text-cyan-400" size={24} /> },
-    { name: "Data Engineering", icon: <Database className="text-cyan-400" size={24} /> },
-    { name: "MLOps", icon: <Cpu className="text-cyan-400" size={24} /> },
+    { name: "Infrastructure as Code", icon: <Code className="text-black" size={24} /> },
+    { name: "CI/CD Pipelines", icon: <GitBranch className="text-black" size={24} /> },
+    { name: "Container Orchestration", icon: <Cloud className="text-black" size={24} /> },
+    { name: "ML Operations", icon: <LineChart className="text-black" size={24} /> },
+    { name: "Data Engineering", icon: <Database className="text-black" size={24} /> },
+    { name: "High-Performance Computing", icon: <Cpu className="text-black" size={24} /> },
   ]
 
   const containerVariants = {
@@ -18,7 +18,7 @@ export default function About() {
     visible: {
       opacity: 1,
       transition: {
-        staggerChildren: 0.2,
+        staggerChildren: 0.1,
       },
     },
   }
@@ -32,63 +32,60 @@ export default function About() {
   }
 
   return (
-    <section id="about" className="py-20 px-4 md:px-8 max-w-6xl mx-auto">
-      <motion.div
-        initial="hidden"
-        whileInView="visible"
-        viewport={{ once: true, amount: 0.2 }}
-        variants={containerVariants}
-        className="space-y-12"
-      >
-        <motion.div variants={itemVariants} className="text-center mb-12">
-          <h2 className="text-3xl md:text-4xl font-bold mb-4">About Me</h2>
-          <div className="w-20 h-1 bg-cyan-400 mx-auto"></div>
-        </motion.div>
+    <section id="about" className="py-24 px-4 bg-black">
+      <div className="max-w-6xl mx-auto">
+        <motion.div
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, amount: 0.2 }}
+          variants={containerVariants}
+          className="space-y-16"
+        >
+          <motion.div variants={itemVariants} className="text-center">
+            <h2 className="text-4xl md:text-5xl font-light text-white mb-6">About</h2>
+            <div className="w-16 h-px bg-amber-400 mx-auto"></div>
+          </motion.div>
 
-        <motion.div variants={itemVariants} className="grid md:grid-cols-2 gap-8">
-          <div>
-            <h3 className="text-2xl font-semibold mb-4">Who I Am</h3>
-            <p className="text-gray-300 mb-4">
-              I'm a DevOps and MLOps engineer with over 5 years of experience building and optimizing infrastructure for
-              machine learning applications. I specialize in creating robust CI/CD pipelines, containerization, and
-              automating ML workflows.
-            </p>
-            <p className="text-gray-300">
-              My passion lies in bridging the gap between data science and operations, ensuring that ML models can be
-              deployed efficiently and reliably at scale.
-            </p>
-          </div>
-          <div>
-            <h3 className="text-2xl font-semibold mb-4">My Expertise</h3>
-            <ul className="space-y-2 text-gray-300">
-              <li>• Designing and implementing CI/CD pipelines for ML applications</li>
-              <li>• Kubernetes cluster management and optimization</li>
-              <li>• Infrastructure as Code (Terraform, CloudFormation)</li>
-              <li>• ML model deployment and monitoring</li>
-              <li>• Data pipeline automation</li>
-              <li>• Cloud infrastructure (AWS, GCP, Azure)</li>
-            </ul>
-          </div>
-        </motion.div>
+          <motion.div variants={itemVariants} className="grid md:grid-cols-2 gap-16">
+            <div className="space-y-6">
+              <h3 className="text-2xl font-light text-white">Philosophy</h3>
+              <p className="text-gray-400 leading-relaxed font-light">
+                I believe in building systems that scale effortlessly and operate reliably. My approach combines deep
+                technical expertise with a focus on elegant, maintainable solutions that empower teams to move faster.
+              </p>
+              <p className="text-gray-400 leading-relaxed font-light">
+                Specializing in the intersection of DevOps and machine learning, I architect infrastructure that can
+                handle the unique demands of AI workloads while maintaining operational excellence.
+              </p>
+            </div>
+            <div className="space-y-6">
+              <h3 className="text-2xl font-light text-white">Expertise</h3>
+              <ul className="space-y-3 text-gray-400 font-light">
+                <li>• Kubernetes cluster design and optimization</li>
+                <li>• GPU-accelerated ML pipeline architecture</li>
+                <li>• Multi-cloud infrastructure automation</li>
+                <li>• Distributed system performance tuning</li>
+                <li>• Real-time data processing at scale</li>
+                <li>• Security-first DevOps practices</li>
+              </ul>
+            </div>
+          </motion.div>
 
-        <motion.h3 variants={itemVariants} className="text-2xl font-semibold text-center mt-12 mb-8">
-          My Skills
-        </motion.h3>
-
-        <motion.div variants={containerVariants} className="grid grid-cols-2 md:grid-cols-3 gap-6">
-          {skills.map((skill, index) => (
-            <motion.div
-              key={index}
-              variants={itemVariants}
-              whileHover={{ scale: 1.05 }}
-              className="bg-gray-800/50 p-6 rounded-lg flex flex-col items-center text-center"
-            >
-              <div className="mb-4 p-3 bg-gray-700/50 rounded-full">{skill.icon}</div>
-              <h4 className="font-medium">{skill.name}</h4>
-            </motion.div>
-          ))}
+          <motion.div variants={containerVariants} className="grid grid-cols-2 md:grid-cols-3 gap-8">
+            {skills.map((skill, index) => (
+              <motion.div
+                key={index}
+                variants={itemVariants}
+                whileHover={{ y: -5 }}
+                className="text-center p-6 rounded-lg border border-white/10 bg-white/5 hover:border-white/20 hover:bg-white/10 transition-all duration-300"
+              >
+                <div className="mb-4 flex justify-center">{skill.icon}</div>
+                <h4 className="font-light text-white">{skill.name}</h4>
+              </motion.div>
+            ))}
+          </motion.div>
         </motion.div>
-      </motion.div>
+      </div>
     </section>
   )
 }

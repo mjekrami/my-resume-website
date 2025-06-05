@@ -2,7 +2,7 @@
 
 import { useState, useEffect } from "react"
 import { motion } from "framer-motion"
-import { ArrowDown, Terminal, Database, Server, Code, Cloud, Cpu } from "lucide-react"
+import { ArrowDown } from "lucide-react"
 import { Button } from "@/components/ui/button"
 
 export default function Hero() {
@@ -15,236 +15,124 @@ export default function Hero() {
       const timeout = setTimeout(() => {
         setText((prevText) => prevText + fullText[index])
         setIndex((prevIndex) => prevIndex + 1)
-      }, 100)
+      }, 80)
 
       return () => clearTimeout(timeout)
     }
   }, [index, fullText])
 
-  // Floating particles data
-  const particles = Array.from({ length: 20 }, (_, i) => ({
-    id: i,
-    x: Math.random() * 100,
-    y: Math.random() * 100,
-    delay: Math.random() * 2,
-    duration: 3 + Math.random() * 2,
-  }))
-
-  const floatingIcons = [
-    { icon: Terminal, delay: 0.5 },
-    { icon: Database, delay: 1 },
-    { icon: Server, delay: 1.5 },
-    { icon: Code, delay: 2 },
-    { icon: Cloud, delay: 2.5 },
-    { icon: Cpu, delay: 3 },
-  ]
-
   return (
-    <section className="h-screen flex flex-col justify-center items-center relative px-4 overflow-hidden">
-      {/* Animated background particles */}
+    <section className="min-h-screen flex flex-col justify-center items-center relative px-4 bg-black">
+      {/* Minimal geometric background */}
       <div className="absolute inset-0 overflow-hidden">
-        {particles.map((particle) => (
-          <motion.div
-            key={particle.id}
-            className="absolute w-1 h-1 bg-cyan-400/30 rounded-full"
-            style={{
-              left: `${particle.x}%`,
-              top: `${particle.y}%`,
-            }}
-            animate={{
-              y: [-20, 20, -20],
-              opacity: [0.3, 0.8, 0.3],
-            }}
-            transition={{
-              duration: particle.duration,
-              delay: particle.delay,
-              repeat: Number.POSITIVE_INFINITY,
-              ease: "easeInOut",
-            }}
-          />
-        ))}
-      </div>
-
-      {/* Floating tech icons */}
-      <div className="absolute inset-0 overflow-hidden pointer-events-none">
-        {floatingIcons.map((item, index) => {
-          const Icon = item.icon
-          return (
-            <motion.div
-              key={index}
-              className="absolute text-cyan-400/20"
-              style={{
-                left: `${10 + index * 15}%`,
-                top: `${20 + (index % 2) * 60}%`,
-              }}
-              animate={{
-                y: [-10, 10, -10],
-                rotate: [-5, 5, -5],
-                scale: [0.8, 1.2, 0.8],
-              }}
-              transition={{
-                duration: 4 + index * 0.5,
-                delay: item.delay,
-                repeat: Number.POSITIVE_INFINITY,
-                ease: "easeInOut",
-              }}
-            >
-              <Icon size={40} />
-            </motion.div>
-          )
-        })}
+        <motion.div
+          className="absolute top-20 right-20 w-32 h-32 border border-white/10 rounded-full"
+          animate={{ rotate: 360 }}
+          transition={{ duration: 60, repeat: Number.POSITIVE_INFINITY, ease: "linear" }}
+        />
+        <motion.div
+          className="absolute bottom-32 left-16 w-24 h-24 bg-white/5 rounded-lg"
+          animate={{ y: [-10, 10, -10] }}
+          transition={{ duration: 8, repeat: Number.POSITIVE_INFINITY, ease: "easeInOut" }}
+        />
+        <motion.div
+          className="absolute top-1/3 left-1/4 w-2 h-2 bg-amber-400 rounded-full"
+          animate={{ opacity: [0.3, 1, 0.3] }}
+          transition={{ duration: 3, repeat: Number.POSITIVE_INFINITY }}
+        />
       </div>
 
       {/* Main content */}
       <motion.div
-        initial={{ opacity: 0, y: 50 }}
+        initial={{ opacity: 0, y: 30 }}
         animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 1, ease: "easeOut" }}
-        className="text-center relative z-10"
+        transition={{ duration: 0.8, ease: "easeOut" }}
+        className="text-center relative z-10 max-w-4xl"
       >
-        {/* Greeting with wave animation */}
-        <motion.div
-          initial={{ opacity: 0, x: -50 }}
-          animate={{ opacity: 1, x: 0 }}
-          transition={{ delay: 0.3, duration: 0.8 }}
-          className="mb-4"
+        {/* Clean greeting */}
+        <motion.p
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ delay: 0.2, duration: 0.6 }}
+          className="text-gray-400 text-lg mb-6 font-light"
         >
-          <span className="text-lg md:text-xl text-gray-300">
-            Hello there!
-            <motion.span
-              animate={{ rotate: [0, 14, -8, 14, -4, 10, 0] }}
-              transition={{ duration: 1.5, delay: 1, repeat: Number.POSITIVE_INFINITY, repeatDelay: 3 }}
-              className="inline-block ml-2"
-            >
-              👋
-            </motion.span>
-          </span>
-        </motion.div>
+          Hello, I'm
+        </motion.p>
 
-        {/* Name with gradient animation */}
+        {/* Name */}
         <motion.h1
-          className="text-4xl md:text-6xl font-bold mb-4"
-          initial={{ opacity: 0, scale: 0.5 }}
-          animate={{ opacity: 1, scale: 1 }}
-          transition={{ delay: 0.5, duration: 0.8, type: "spring", stiffness: 100 }}
+          className="text-6xl md:text-8xl font-light mb-6 text-white tracking-tight"
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ delay: 0.4, duration: 0.8 }}
         >
-          I'm{" "}
-          <motion.span
-            className="bg-gradient-to-r from-cyan-400 via-blue-500 to-purple-600 bg-clip-text text-transparent"
-            animate={{
-              backgroundPosition: ["0% 50%", "100% 50%", "0% 50%"],
-            }}
-            transition={{
-              duration: 3,
-              repeat: Number.POSITIVE_INFINITY,
-              ease: "linear",
-            }}
-            style={{
-              backgroundSize: "200% 200%",
-            }}
-          >
-            Alex
-          </motion.span>
+          Alex Chen
         </motion.h1>
 
-        {/* Typing animation for role */}
-        <motion.h2
-          className="text-2xl md:text-4xl mb-8 h-16 flex items-center justify-center"
+        {/* Role with typing effect */}
+        <motion.div
+          className="text-2xl md:text-3xl mb-12 h-12 flex items-center justify-center font-light text-gray-300"
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ delay: 0.6, duration: 0.8 }}
+        >
+          <span>{text}</span>
+          <motion.span
+            animate={{ opacity: [1, 0, 1] }}
+            transition={{ duration: 1, repeat: Number.POSITIVE_INFINITY }}
+            className="text-amber-400 ml-1"
+          >
+            |
+          </motion.span>
+        </motion.div>
+
+        {/* Minimal description */}
+        <motion.p
+          className="text-gray-400 text-lg mb-12 max-w-2xl mx-auto leading-relaxed font-light"
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.8, duration: 0.8 }}
         >
-          <span className="text-white">{text}</span>
-          <motion.span
-            animate={{ opacity: [1, 0, 1] }}
-            transition={{ duration: 1, repeat: Number.POSITIVE_INFINITY }}
-            className="text-cyan-400 ml-1"
+          Specializing in scalable infrastructure, ML operations, and high-performance computing systems. Building the
+          future of distributed computing with precision and elegance.
+        </motion.p>
+
+        {/* Clean CTA */}
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ delay: 1, duration: 0.8 }}
+        >
+          <Button
+            variant="outline"
+            className="border-white/20 text-white hover:bg-white/5 hover:border-white/40 px-8 py-3 text-base font-light rounded-full transition-all duration-300"
+            onClick={() => {
+              document.getElementById("compute-section")?.scrollIntoView({ behavior: "smooth" })
+            }}
           >
-            |
-          </motion.span>
-        </motion.h2>
-
-        {/* Animated skill badges */}
-        <motion.div
-          className="flex flex-wrap justify-center gap-4 mb-12"
-          initial={{ opacity: 0, y: 30 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 1.2, duration: 0.8 }}
-        >
-          {[
-            { icon: Terminal, text: "CI/CD", delay: 0 },
-            { icon: Database, text: "ML Pipelines", delay: 0.1 },
-            { icon: Server, text: "Infrastructure", delay: 0.2 },
-          ].map((item, index) => {
-            const Icon = item.icon
-            return (
-              <motion.div
-                key={index}
-                className="flex items-center gap-2 bg-gray-800/50 backdrop-blur-sm px-4 py-2 rounded-full border border-gray-700/50"
-                initial={{ opacity: 0, scale: 0.8, y: 20 }}
-                animate={{ opacity: 1, scale: 1, y: 0 }}
-                transition={{ delay: 1.5 + item.delay, duration: 0.5 }}
-                whileHover={{
-                  scale: 1.05,
-                  backgroundColor: "rgba(34, 211, 238, 0.1)",
-                  borderColor: "rgba(34, 211, 238, 0.3)",
-                }}
-              >
-                <Icon className="text-cyan-400" size={20} />
-                <span>{item.text}</span>
-              </motion.div>
-            )
-          })}
-        </motion.div>
-
-        {/* CTA Button with pulse effect */}
-        <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 2, duration: 0.8 }}
-        >
-          <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
-            <Button
-              variant="outline"
-              className="relative border-cyan-400 text-cyan-400 hover:bg-cyan-400/10 px-8 py-3 text-lg overflow-hidden group"
-              onClick={() => {
-                document.getElementById("about")?.scrollIntoView({ behavior: "smooth" })
-              }}
-            >
-              <motion.div
-                className="absolute inset-0 bg-cyan-400/20"
-                initial={{ x: "-100%" }}
-                whileHover={{ x: "100%" }}
-                transition={{ duration: 0.5 }}
-              />
-              <span className="relative z-10">View My Work</span>
-            </Button>
-          </motion.div>
+            Explore My Work
+          </Button>
         </motion.div>
       </motion.div>
 
-      {/* Animated scroll indicator */}
+      {/* Minimal scroll indicator */}
       <motion.div
-        className="absolute bottom-10"
-        initial={{ opacity: 0, y: 20 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ delay: 2.5, duration: 0.8 }}
+        className="absolute bottom-8"
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ delay: 1.5, duration: 0.8 }}
       >
         <motion.div
-          animate={{ y: [0, 10, 0] }}
+          animate={{ y: [0, 8, 0] }}
           transition={{ duration: 2, repeat: Number.POSITIVE_INFINITY, ease: "easeInOut" }}
-          className="flex flex-col items-center gap-2 cursor-pointer"
+          className="flex flex-col items-center gap-2 cursor-pointer text-gray-500"
           onClick={() => {
-            document.getElementById("about")?.scrollIntoView({ behavior: "smooth" })
+            document.getElementById("compute-section")?.scrollIntoView({ behavior: "smooth" })
           }}
         >
-          <span className="text-gray-400 text-sm">Scroll Down</span>
-          <ArrowDown className="text-cyan-400" size={24} />
+          <ArrowDown size={20} />
         </motion.div>
       </motion.div>
-
-      {/* Gradient overlay for depth */}
-      <div className="absolute inset-0 bg-gradient-to-b from-transparent via-transparent to-gray-900/20 pointer-events-none" />
     </section>
   )
 }
