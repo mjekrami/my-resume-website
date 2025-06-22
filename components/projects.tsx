@@ -130,7 +130,7 @@ export default function Projects() {
             </div>
           </motion.div>
 
-          <motion.div variants={containerVariants} className="grid md:grid-cols-2 gap-8">
+          <motion.div key={activeTab} variants={containerVariants} className="grid md:grid-cols-2 gap-8">
             {filteredProjects.map((project) => (
               <motion.div key={project.id} variants={itemVariants} whileHover={{ y: -5 }} className="overflow-hidden">
                 <Card className="bg-white border-gray-200 overflow-hidden h-full flex flex-col relative hover:border-gray-300 transition-all duration-300 shadow-sm hover:shadow-md">

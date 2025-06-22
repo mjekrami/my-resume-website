@@ -5,12 +5,12 @@ import { Code, GitBranch, Database, Cloud, Cpu, LineChart } from "lucide-react"
 
 export default function About() {
   const skills = [
-    { name: "Infrastructure as Code", icon: <Code className="text-black" size={24} /> },
-    { name: "CI/CD Pipelines", icon: <GitBranch className="text-black" size={24} /> },
-    { name: "Container Orchestration", icon: <Cloud className="text-black" size={24} /> },
-    { name: "ML Operations", icon: <LineChart className="text-black" size={24} /> },
-    { name: "Data Engineering", icon: <Database className="text-black" size={24} /> },
-    { name: "High-Performance Computing", icon: <Cpu className="text-black" size={24} /> },
+    { name: "Infrastructure as Code", icon: <Code className="text-slate-50" size={24} /> },
+    { name: "CI/CD Pipelines", icon: <GitBranch className="text-slate-100 bg-black" size={24} /> },
+    { name: "Container Orchestration", icon: <Cloud className="" size={24} /> },
+    { name: "ML Operations", icon: <LineChart className="text-slate-100" size={24} /> },
+    { name: "Data Engineering", icon: <Database className="text-slate-100" size={24} /> },
+    { name: "High-Performance Computing", icon: <Cpu className="text-slate-100" size={24} /> },
   ]
 
   const containerVariants = {
