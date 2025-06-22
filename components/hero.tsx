@@ -105,7 +105,7 @@ export default function Hero() {
         >
           <Button
             variant="outline"
-            className="border-white/20 text-white hover:bg-white/5 hover:border-white/40 px-8 py-3 text-base rounded-full transition-all duration-300"
+            className="border-white/40 text-white hover:bg-white/10 hover:border-white/60 px-8 py-3 text-base rounded-full transition-all duration-300 bg-white/5"
             onClick={() => {
               document.getElementById("compute-section")?.scrollIntoView({ behavior: "smooth" })
             }}
