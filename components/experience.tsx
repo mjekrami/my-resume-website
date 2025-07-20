@@ -9,7 +9,7 @@ export default function Experience() {
   const [activeNode, setActiveNode] = useState(0)
   const { scrollYProgress } = useScroll({
     target: containerRef,
-    offset: ["start 0.2", "end 0.8"],
+    offset: ["start start", "end end"],
   })
 
   const experiences = [
@@ -132,37 +132,39 @@ export default function Experience() {
     },
   }
 
+  const svgHeight = experiences.length * 600 + 600
+
   // Generate complete zigzag path that spans the entire section
   const generateZigzagPath = () => {
-    const totalHeight = experiences.length * 400 + 200 // Extra padding
     const centerX = 400
     const amplitude = 150
-    const segmentHeight = totalHeight / (experiences.length + 1)
+    const segmentHeight = svgHeight / (experiences.length + 1)
 
-    let path = `M ${centerX} 50` // Start from top
+    let path = `M ${centerX} 0` // Start from very top
 
-    // Create zigzag pattern through all nodes
     for (let i = 0; i <= experiences.length; i++) {
-      const y = 50 + (i + 1) * segmentHeight
+      const y = i * segmentHeight
       const x = centerX + (i % 2 === 0 ? amplitude : -amplitude)
 
-      // Use smooth curves for the zigzag
-      const controlY = 50 + i * segmentHeight + segmentHeight / 2
-      path += ` Q ${centerX} ${controlY} ${x} ${y}`
+      if (i === 0) {
+        path = `M ${x} ${y}` // Start directly at first point
+      } else {
+        const prevY = (i - 1) * segmentHeight
+        path += ` Q ${centerX} ${prevY + segmentHeight / 2} ${x} ${y}`
+      }
     }
-
     return path
   }
 
   // Calculate node positions along the zigzag
   const getNodePosition = (index: number) => {
-    const totalHeight = experiences.length * 400 + 200
     const centerX = 400
     const amplitude = 150
-    const segmentHeight = totalHeight / (experiences.length + 1)
+    const segmentHeight = svgHeight / (experiences.length + 1)
 
-    const y = 50 + (index + 1) * segmentHeight
-    const x = centerX + (index % 2 === 0 ? amplitude : -amplitude)
+    const pathPointIndex = index + 1
+    const y = pathPointIndex * segmentHeight
+    const x = centerX + (pathPointIndex % 2 === 0 ? amplitude : -amplitude)
 
     return { x, y }
   }
@@ -201,9 +203,9 @@ export default function Experience() {
           <div className="absolute inset-0 flex justify-center pointer-events-none">
             <svg
               width="800"
-              height={experiences.length * 400 + 400}
+              height={experiences.length * 600 + 600}
               className="absolute top-0"
-              viewBox={`0 0 800 ${experiences.length * 400 + 400}`}
+              viewBox={`0 0 800 ${experiences.length * 600 + 600}`}
             >
               {/* Background zigzag path */}
               <path
