@@ -122,24 +122,6 @@ export default function Projects() {
                   <CardContent className="flex-grow">
                     <p className="text-gray-600 font-light">{project.description}</p>
                   </CardContent>
-                  <CardFooter className="flex justify-between">
-                    <Button
-                      variant="outline"
-                      size="sm"
-                      className="flex items-center gap-2 border-black/20 text-black hover:bg-black/5 bg-transparent"
-                    >
-                      <Github size={16} />
-                      Code
-                    </Button>
-                    <Button
-                      variant="outline"
-                      size="sm"
-                      className="flex items-center gap-2 border-black/20 text-black hover:bg-black/5 bg-transparent"
-                    >
-                      <ExternalLink size={16} />
-                      Demo
-                    </Button>
-                  </CardFooter>
                 </Card>
               </motion.div>
             ))}
