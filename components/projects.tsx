@@ -1,21 +1,17 @@
 "use client"
 
-import { useState } from "react"
 import { motion } from "framer-motion"
 import { ExternalLink, Github, Zap, Grid3X3 } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card"
 
 export default function Projects() {
-  const [activeTab, setActiveTab] = useState("all")
-
   const projects = [
     {
       id: 1,
       title: "GPU-Accelerated ML Pipeline",
       description:
         "Built an end-to-end ML pipeline using Kubeflow on GCP with NVIDIA GPU clusters, automating the training, validation, and deployment of recommendation models with 10x performance improvement.",
-      image: "/placeholder.svg?height=400&width=600",
       category: "mlops",
       tags: ["Kubeflow", "CUDA", "GCP", "GPU Clusters"],
       github: "#",
@@ -27,7 +23,6 @@ export default function Projects() {
       title: "Parallel Kubernetes Optimization",
       description:
         "Designed and implemented a cost-effective Kubernetes cluster with parallel processing capabilities for a fintech company, reducing cloud costs by 40% while improving performance through distributed computing.",
-      image: "/placeholder.svg?height=400&width=600",
       category: "devops",
       tags: ["Kubernetes", "Terraform", "AWS", "Parallel Processing"],
       github: "#",
@@ -39,7 +34,6 @@ export default function Projects() {
       title: "Real-time GPU Model Serving",
       description:
         "Created a scalable real-time ML model serving platform using NVIDIA Triton and Redis, handling 10k+ requests per second with GPU acceleration and low latency parallel inference.",
-      image: "/placeholder.svg?height=400&width=600",
       category: "mlops",
       tags: ["Triton", "GPU", "Redis", "Parallel Inference"],
       github: "#",
@@ -51,7 +45,6 @@ export default function Projects() {
       title: "Distributed GitOps Pipeline",
       description:
         "Implemented a GitOps workflow using ArgoCD and GitHub Actions with parallel deployment strategies, enabling automated deployments across multiple GPU clusters with rollback capabilities.",
-      image: "/placeholder.svg?height=400&width=600",
       category: "devops",
       tags: ["ArgoCD", "GitHub Actions", "Helm", "Distributed Systems"],
       github: "#",
@@ -59,8 +52,6 @@ export default function Projects() {
       isGpuProject: false,
     },
   ]
-
-  const filteredProjects = activeTab === "all" ? projects : projects.filter((project) => project.category === activeTab)
 
   const containerVariants = {
     hidden: { opacity: 0 },
@@ -92,46 +83,10 @@ export default function Projects() {
           <motion.div variants={itemVariants} className="text-center mb-12">
             <h2 className="text-4xl md:text-5xl font-light text-black mb-6">Projects</h2>
             <div className="w-16 h-px bg-amber-400 mx-auto mb-8"></div>
-
-            <div className="flex flex-wrap justify-center gap-4 mb-12">
-              <Button
-                variant={activeTab === "all" ? "default" : "outline"}
-                onClick={() => setActiveTab("all")}
-                className={
-                  activeTab === "all"
-                    ? "bg-black hover:bg-gray-800 text-white"
-                    : "border-black/20 text-black hover:bg-black/5"
-                }
-              >
-                All Projects
-              </Button>
-              <Button
-                variant={activeTab === "devops" ? "default" : "outline"}
-                onClick={() => setActiveTab("devops")}
-                className={
-                  activeTab === "devops"
-                    ? "bg-black hover:bg-gray-800 text-white"
-                    : "border-black/20 text-black hover:bg-black/5"
-                }
-              >
-                DevOps
-              </Button>
-              <Button
-                variant={activeTab === "mlops" ? "default" : "outline"}
-                onClick={() => setActiveTab("mlops")}
-                className={
-                  activeTab === "mlops"
-                    ? "bg-black hover:bg-gray-800 text-white"
-                    : "border-black/20 text-black hover:bg-black/5"
-                }
-              >
-                MLOps
-              </Button>
-            </div>
           </motion.div>
 
-          <motion.div key={activeTab} variants={containerVariants} className="grid md:grid-cols-2 gap-8">
-            {filteredProjects.map((project) => (
+          <motion.div variants={containerVariants} className="grid md:grid-cols-2 gap-8">
+            {projects.map((project) => (
               <motion.div key={project.id} variants={itemVariants} whileHover={{ y: -5 }} className="overflow-hidden">
                 <Card className="bg-white border-gray-200 overflow-hidden h-full flex flex-col relative hover:border-gray-300 transition-all duration-300 shadow-sm hover:shadow-md">
                   {/* GPU Project Indicator */}
@@ -142,24 +97,6 @@ export default function Projects() {
                     </div>
                   )}
 
-                  <div className="overflow-hidden relative">
-                    <motion.img
-                      src={project.image}
-                      alt={project.title}
-                      className="w-full h-48 object-cover"
-                      whileHover={{ scale: 1.05 }}
-                      transition={{ duration: 0.3 }}
-                    />
-                    {/* Parallel processing overlay for GPU projects */}
-                    {project.isGpuProject && (
-                      <motion.div
-                        className="absolute inset-0 bg-gradient-to-r from-transparent via-amber-400/10 to-transparent"
-                        animate={{ x: [-100, 100] }}
-                        transition={{ duration: 3, repeat: Number.POSITIVE_INFINITY, ease: "linear" }}
-                      />
-                    )}
-                  </div>
-
                   <CardHeader>
                     <CardTitle className="text-xl text-black flex items-center gap-2">
                       {project.title}
@@ -169,14 +106,13 @@ export default function Projects() {
                       {project.tags.map((tag, i) => (
                         <span
                           key={i}
-                          className={`inline-block text-xs px-2 py-1 rounded mr-2 mb-2 ${
-                            tag.includes("GPU") ||
+                          className={`inline-block text-xs px-2 py-1 rounded mr-2 mb-2 ${tag.includes("GPU") ||
                             tag.includes("CUDA") ||
                             tag.includes("Parallel") ||
                             tag.includes("Triton")
-                              ? "bg-amber-100 text-amber-700 border border-amber-200"
-                              : "bg-gray-100 text-gray-700 border border-gray-200"
-                          }`}
+                            ? "bg-amber-100 text-amber-700 border border-amber-200"
+                            : "bg-gray-100 text-gray-700 border border-gray-200"
+                            }`}
                         >
                           {tag}
                         </span>
@@ -190,7 +126,7 @@ export default function Projects() {
                     <Button
                       variant="outline"
                       size="sm"
-                      className="flex items-center gap-2 border-black/20 text-black hover:bg-black/5"
+                      className="flex items-center gap-2 border-black/20 text-black hover:bg-black/5 bg-transparent"
                     >
                       <Github size={16} />
                       Code
@@ -198,7 +134,7 @@ export default function Projects() {
                     <Button
                       variant="outline"
                       size="sm"
-                      className="flex items-center gap-2 border-black/20 text-black hover:bg-black/5"
+                      className="flex items-center gap-2 border-black/20 text-black hover:bg-black/5 bg-transparent"
                     >
                       <ExternalLink size={16} />
                       Demo
@@ -213,3 +149,4 @@ export default function Projects() {
     </section>
   )
 }
+
